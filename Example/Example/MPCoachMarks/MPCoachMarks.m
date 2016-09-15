@@ -44,6 +44,7 @@ NSString *const kContinueLabelText = @"Tap to continue";
 @synthesize skipButtonText;
 @synthesize arrowImage;
 @synthesize continueLocation;
+@synthesize coachImage;
 
 #pragma mark - Methods
 
@@ -97,6 +98,11 @@ NSString *const kContinueLabelText = @"Tap to continue";
     // Capture touches
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTap:)];
     [self addGestureRecognizer:tapGestureRecognizer];
+    
+    // Coach Image
+    self.coachImage = [[UIImageView alloc] initWithFrame:CGRectZero];
+    self.coachImage.contentMode = UIViewContentModeScaleAspectFit;
+    [self addSubview:self.coachImage];
     
     // Captions
     self.lblCaption = [[UILabel alloc] initWithFrame:(CGRect){{0.0f, 0.0f}, {self.maxLblWidth, 0.0f}}];
@@ -228,11 +234,13 @@ NSString *const kContinueLabelText = @"Tap to continue";
     NSDictionary *markDef = [self.coachMarks objectAtIndex:index];
     NSString *markCaption = [markDef objectForKey:@"caption"];
     CGRect markRect = [[markDef objectForKey:@"rect"] CGRectValue];
+    //Coach Image definition
+    NSString *coachImageName = [markDef objectForKey:kMPCoachMarkImageName];
+    CGRect coachImageRect = [[markDef objectForKey:kMPCoachMarkImageRect] CGRectValue];
     
     MaskShape shape = DEFAULT;
     if([[markDef allKeys] containsObject:@"shape"])
         shape = [[markDef objectForKey:@"shape"] integerValue];
-    
     
     //Label Position
     LabelAligment labelAlignment = [[markDef objectForKey:@"alignment"] integerValue];
@@ -254,7 +262,8 @@ NSString *const kContinueLabelText = @"Tap to continue";
         [self addSubview:currentView];
     }
     
-    
+    [self.coachImage setImage:[UIImage imageNamed:coachImageName]];
+    [self.coachImage setFrame:coachImageRect];
     
     [self.arrowImage removeFromSuperview];
     BOOL showArrow = NO;

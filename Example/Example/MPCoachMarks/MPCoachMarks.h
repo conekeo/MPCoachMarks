@@ -64,6 +64,16 @@ typedef NS_ENUM(NSInteger, ContinueLocation) {
     LOCATION_BOTTOM,
 };
 
+static NSString * const kMPCoachMarkImageName = @"coachImageName";
+static NSString * const kMPCoachMarkImageRect = @"rectCoachImage";
+static NSString * const kMPCoachMarkCaption = @"caption";
+static NSString * const kMPCoachMarkRect = @"rect";
+static NSString * const kMPCoachMarkShape = @"shape";
+static NSString * const kMPCoachMarkAlignment = @"alignment";
+static NSString * const kMPCoachMarkPosition = @"position";
+static NSString * const kMPCoachMarkCutoutRadius = @"rectCoachImage";
+static NSString * const kMPCoachMarkShowArrow = @"showArrow";
+
 @protocol MPCoachMarksViewDelegate;
 
 @interface MPCoachMarks : UIView
@@ -84,6 +94,7 @@ typedef NS_ENUM(NSInteger, ContinueLocation) {
 @property (nonatomic, copy) NSString *skipButtonText;
 @property (nonatomic) ContinueLocation continueLocation;
 @property (nonatomic, strong) UIImageView *arrowImage;
+@property (nonatomic, strong) UIImageView *coachImage;
 
 - (id)initWithFrame:(CGRect)frame coachMarks:(NSArray *)marks;
 - (void)start;
