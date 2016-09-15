@@ -29,13 +29,10 @@
     
     CGRect coachmark1 = CGRectMake(([UIScreen mainScreen].bounds.size.width - 125) / 2, 64, 125, 125);
     
-    CGRect coachmark3 = CGRectMake(2, 20, 30, 30);
     
-    CGRect coachImage1 = coachmark3;
-    coachImage1.origin.x += 50;
-    
-    CGRect coachImage2 = coachImage1;
-    coachImage2.origin.x += 100;
+    CGRect coachImage1 = CGRectMake(coachmark1.origin.x, coachmark1.origin.y, 30, 30);
+    coachImage1.origin.x += coachmark1.size.width / 2;
+    coachImage1.origin.y += coachmark1.size.height / 2;
     
     // Setup coach marks
     NSArray *coachMarks = @[
@@ -50,29 +47,31 @@
                                 kMPCoachMarkImageRect: [NSValue valueWithCGRect:coachImage1],
                             },
                             @{
-                                @"rect": [NSValue valueWithCGRect:coachmark3],
+                                @"rect": [NSValue valueWithCGRect:coachmark1],
                                 @"caption": @"And works with navigations buttons too",
                                 @"shape": [NSNumber numberWithInteger:SHAPE_SQUARE],
                                 kMPCoachMarkImageName: @"swiperight",
-                                kMPCoachMarkRect: [NSValue valueWithCGRect:coachImage2]
+                                kMPCoachMarkRect: [NSValue valueWithCGRect:coachImage1]
                                 },
                             @{
-                                @"rect": [NSValue valueWithCGRect:coachmark3],
+                                @"rect": [NSValue valueWithCGRect:coachmark1],
                                 @"caption": @"And works with navigations buttons too",
-                                @"shape": [NSNumber numberWithInteger:SHAPE_SQUARE],
+                                @"shape": [NSNumber numberWithInteger:SHAPE_CIRCLE],
                                 kMPCoachMarkImageName: @"tap",
-                                kMPCoachMarkImageRect: [NSValue valueWithCGRect:coachImage2]
+                                kMPCoachMarkImageRect: [NSValue valueWithCGRect:coachImage1]
                                 },
                             @{
-                                @"rect": [NSValue valueWithCGRect:coachmark3],
+                                @"rect": [NSValue valueWithCGRect:coachmark1],
                                 @"caption": @"And works with navigations buttons too",
                                 @"shape": [NSNumber numberWithInteger:SHAPE_SQUARE],
                                 kMPCoachMarkImageName: @"doubletap",
-                                kMPCoachMarkImageRect: [NSValue valueWithCGRect:coachImage2]
+                                kMPCoachMarkImageRect: [NSValue valueWithCGRect:coachImage1]
                                 }
                             ];
     
     MPCoachMarks *coachMarksView = [[MPCoachMarks alloc] initWithFrame:self.navigationController.view.bounds coachMarks:coachMarks];
+    coachMarksView.maskCutOutColor = [UIColor colorWithRed:1.000 green:0.000 blue:0.009 alpha:0.504];
+    
     [self.navigationController.view addSubview:coachMarksView];
     [coachMarksView start];
     

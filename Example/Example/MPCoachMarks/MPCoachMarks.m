@@ -22,6 +22,7 @@ NSString *const kContinueLabelText = @"Tap to continue";
 
 @implementation MPCoachMarks {
     CAShapeLayer *mask;
+    CAShapeLayer *cutOutMask;
     NSUInteger markIndex;
     UIView *currentView;
 }
@@ -34,6 +35,7 @@ NSString *const kContinueLabelText = @"Tap to continue";
 @synthesize lblContinue;
 @synthesize btnSkipCoach;
 @synthesize maskColor = _maskColor;
+@synthesize maskCutOutColor = _maskCutOutColor;
 @synthesize animationDuration;
 @synthesize cutoutRadius;
 @synthesize maxLblWidth;
@@ -93,8 +95,13 @@ NSString *const kContinueLabelText = @"Tap to continue";
     mask = [CAShapeLayer layer];
     [mask setFillRule:kCAFillRuleEvenOdd];
     [mask setFillColor:[[UIColor colorWithHue:0.0f saturation:0.0f brightness:0.0f alpha:kMaskAlpha] CGColor]];
+    cutOutMask = [CAShapeLayer layer];
+    [cutOutMask setFillRule:kCAFillRuleEvenOdd];
+    [cutOutMask setFillColor:self.maskCutOutColor.CGColor];
+    
     [self.layer addSublayer:mask];
     
+    [self.layer addSublayer:cutOutMask];
     // Capture touches
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(userDidTap:)];
     [self addGestureRecognizer:tapGestureRecognizer];
@@ -141,6 +148,8 @@ NSString *const kContinueLabelText = @"Tap to continue";
     
     // Set the new path
     mask.path = maskPath.CGPath;
+    
+    cutOutMask.path = cutoutPath.CGPath;
 }
 
 - (void)animateCutoutToRect:(CGRect)rect withShape:(MaskShape)shape{
@@ -167,8 +176,22 @@ NSString *const kContinueLabelText = @"Tap to continue";
     anim.fillMode = kCAFillModeForwards;
     anim.fromValue = (__bridge id)(mask.path);
     anim.toValue = (__bridge id)(maskPath.CGPath);
+    
+    
+    CABasicAnimation *cutOutanim = [CABasicAnimation animationWithKeyPath:@"path"];
+    cutOutanim.delegate = self;
+    cutOutanim.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    cutOutanim.duration = self.animationDuration;
+    cutOutanim.removedOnCompletion = NO;
+    cutOutanim.fillMode = kCAFillModeForwards;
+    cutOutanim.fromValue = (__bridge id)(cutOutMask.path);
+    cutOutanim.toValue = (__bridge id)(cutoutPath.CGPath);
+    
     [mask addAnimation:anim forKey:@"path"];
+    [cutOutMask addAnimation:cutOutanim forKey:@"path"];
+    
     mask.path = maskPath.CGPath;
+    cutOutMask.path = cutoutPath.CGPath;
 }
 
 #pragma mark - Mask color
@@ -176,6 +199,11 @@ NSString *const kContinueLabelText = @"Tap to continue";
 - (void)setMaskColor:(UIColor *)maskColor {
     _maskColor = maskColor;
     [mask setFillColor:[maskColor CGColor]];
+}
+
+- (void)setMaskCutOutColor:(UIColor *)maskColor {
+    _maskCutOutColor = maskColor;
+    [cutOutMask setFillColor:[maskColor CGColor]];
 }
 
 #pragma mark - Touch handler
@@ -254,7 +282,7 @@ NSString *const kContinueLabelText = @"Tap to continue";
     if ([self.delegate respondsToSelector:@selector(coachMarksViewDidClicked:atIndex:)]) {
         [currentView removeFromSuperview];
         currentView = [[UIView alloc] initWithFrame:markRect];
-        currentView.backgroundColor = [UIColor clearColor];
+        currentView.backgroundColor = [UIColor colorWithRed:1.000 green:0.000 blue:0.075 alpha:0.802];
         UITapGestureRecognizer *singleFingerTap =
         [[UITapGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(handleSingleTap:)];

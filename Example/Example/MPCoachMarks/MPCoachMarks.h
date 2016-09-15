@@ -82,6 +82,7 @@ static NSString * const kMPCoachMarkShowArrow = @"showArrow";
 @property (nonatomic, strong) NSArray *coachMarks;
 @property (nonatomic, strong) UILabel *lblCaption;
 @property (nonatomic, strong) UIColor *maskColor;
+@property (nonatomic, strong) UIColor *maskCutOutColor;
 @property (nonatomic, strong) UILabel *lblContinue;
 @property (nonatomic, strong) UIButton *btnSkipCoach;
 @property (nonatomic) CGFloat animationDuration;
