@@ -1,3 +1,10 @@
+Based on the greats project MPCoachMarks I fork this repo to add new feature to coach mark projects:
+
+I can add an image to CoachMark and set the position of it with the setup.
+MPCoachMarks
+
+<iframe src="https://appetize.io/embed/weypxb3w4xdmycbjmk60h4m8rm?device=iphone5s&scale=100&autoplay=false&orientation=portrait&deviceColor=black" width="378px" height="800px" frameborder="0" scrolling="no"></iframe>
+
 # MPCoachMarks
 
 <p align="center"><img src ="http://zippy.gfycat.com/DefiantTastyDogwoodtwigborer.gif" /></p>
@@ -46,7 +53,7 @@ Create a new MPCoachMarks instance in your viewDidLoad method and pass in an arr
     CGRect coachmark1 = CGRectMake(([UIScreen mainScreen].bounds.size.width - 125) / 2, 64, 125, 125);
     CGRect coachmark2 = CGRectMake(([UIScreen mainScreen].bounds.size.width - 300) / 2, coachmark1.origin.y + coachmark1.size.height, 300, 80);
     CGRect coachmark3 = CGRectMake(2, 20, 45, 45);
-    
+
     // Setup coach marks
     NSArray *coachMarks = @[
                             @{
@@ -68,7 +75,7 @@ Create a new MPCoachMarks instance in your viewDidLoad method and pass in an arr
                                 }
                             ];
 
-                            
+
 	MPCoachMarks *coachMarksView = [[MPCoachMarks alloc] initWithFrame:self.view.bounds coachMarks:coachMarks];
 	[self.view addSubview:coachMarksView];
 	[coachMarksView start];
@@ -119,16 +126,16 @@ Modify the coach marks.
 
 ### `shape` (MaskShape)
 
-You can use 3 differents types of shape: 
+You can use 3 differents types of shape:
 * DEFAULT (or empty)
 * SHAPE_CIRCLE
-* SHAPE_SQUARE 
+* SHAPE_SQUARE
 
 _(Square with borders rounded it's DEFAULT)_
 
 ### `position` (LabelAligment)
 
-You can use 5 differents position of caption label: 
+You can use 5 differents position of caption label:
 * LABEL_POSITION_BOTTOM (or empty)
 * LABEL_POSITION_LEFT
 * LABEL_POSITION_TOP
@@ -139,7 +146,7 @@ _(LABEL_POSITION_BOTTOM it's default)_
 
 ### `alignment` (LabelAligment)
 
-You can use 3 differents types of shape: 
+You can use 3 differents types of shape:
 * LABEL_ALIGNMENT_CENTER (or empty)
 * LABEL_ALIGNMENT_LEFT
 * LABEL_ALIGNMENT_RIGHT
@@ -193,7 +200,7 @@ Text of continue label (default: 'Tap to continue').
 
 ### `continueLocation` (ContinueLocation)
 
-Set te position of 'continue label'. 
+Set te position of 'continue label'.
 
 You can use 3 differents position:
 * LOCATION_TOP
