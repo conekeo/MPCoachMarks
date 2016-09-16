@@ -3,7 +3,7 @@ Based on the greats project MPCoachMarks I fork this repo to add new feature to 
 I can add an image to CoachMark and set the position of it with the setup.
 MPCoachMarks
 
-[Demo][f98f4b13]
+# [Checkout the demo][f98f4b13]
 
   [f98f4b13]: https://appetize.io/app/weypxb3w4xdmycbjmk60h4m8rm "Checkout the demo"
 
