@@ -3,7 +3,9 @@ Based on the greats project MPCoachMarks I fork this repo to add new feature to 
 I can add an image to CoachMark and set the position of it with the setup.
 MPCoachMarks
 
-<iframe src="https://appetize.io/embed/weypxb3w4xdmycbjmk60h4m8rm?device=iphone5s&scale=100&autoplay=false&orientation=portrait&deviceColor=black" width="378px" height="800px" frameborder="0" scrolling="no"></iframe>
+[Demo][f98f4b13]
+
+  [f98f4b13]: https://appetize.io/app/weypxb3w4xdmycbjmk60h4m8rm "Checkout the demo"
 
 # MPCoachMarks
 
