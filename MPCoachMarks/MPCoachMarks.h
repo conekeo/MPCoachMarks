@@ -64,6 +64,16 @@ typedef NS_ENUM(NSInteger, ContinueLocation) {
     LOCATION_BOTTOM,
 };
 
+static NSString * const kMPCoachMarkImageName = @"coachImageName";
+static NSString * const kMPCoachMarkImageRect = @"rectCoachImage";
+static NSString * const kMPCoachMarkCaption = @"caption";
+static NSString * const kMPCoachMarkRect = @"rect";
+static NSString * const kMPCoachMarkShape = @"shape";
+static NSString * const kMPCoachMarkAlignment = @"alignment";
+static NSString * const kMPCoachMarkPosition = @"position";
+static NSString * const kMPCoachMarkCutoutRadius = @"rectCoachImage";
+static NSString * const kMPCoachMarkShowArrow = @"showArrow";
+
 @protocol MPCoachMarksViewDelegate;
 
 @interface MPCoachMarks : UIView
@@ -72,6 +82,7 @@ typedef NS_ENUM(NSInteger, ContinueLocation) {
 @property (nonatomic, strong) NSArray *coachMarks;
 @property (nonatomic, strong) UILabel *lblCaption;
 @property (nonatomic, strong) UIColor *maskColor;
+@property (nonatomic, strong) UIColor *maskCutOutColor;
 @property (nonatomic, strong) UILabel *lblContinue;
 @property (nonatomic, strong) UIButton *btnSkipCoach;
 @property (nonatomic) CGFloat animationDuration;
@@ -84,10 +95,10 @@ typedef NS_ENUM(NSInteger, ContinueLocation) {
 @property (nonatomic, copy) NSString *skipButtonText;
 @property (nonatomic) ContinueLocation continueLocation;
 @property (nonatomic, strong) UIImageView *arrowImage;
+@property (nonatomic, strong) UIImageView *coachImage;
 
 - (id)initWithFrame:(CGRect)frame coachMarks:(NSArray *)marks;
 - (void)start;
-- (void)end;
 
 @end
 
@@ -99,6 +110,5 @@ typedef NS_ENUM(NSInteger, ContinueLocation) {
 - (void)coachMarksViewWillCleanup:(MPCoachMarks *)coachMarksView;
 - (void)coachMarksViewDidCleanup:(MPCoachMarks *)coachMarksView;
 - (void)coachMarksViewDidClicked:(MPCoachMarks *)coachMarksView atIndex:(NSInteger)index;
-- (void)coachMarksViewSkipButtonClicked:(MPCoachMarks *)coachMarksView;
 
 @end
